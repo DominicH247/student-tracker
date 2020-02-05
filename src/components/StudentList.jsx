@@ -36,7 +36,6 @@ class StudentList extends Component {
 
   handleChange = event => {
     console.log(event.target.value, "EVENT");
-
     let graduatedSelection;
     let blockSelection;
 
@@ -63,6 +62,7 @@ class StudentList extends Component {
     }
     return (
       <main>
+        {/* Consider putting into new component */}
         {console.log(this.state, "THE STATE")}
         <h3>There are currently {this.state.students.length} students</h3>
         <form>
