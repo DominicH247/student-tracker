@@ -5,6 +5,7 @@ import StudentList from "./components/StudentList";
 import { Router } from "@reach/router";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import CourseMetrics from "./components/CourseMetrics";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Home path="/" />
         <StudentList path="/students/*" />
+        <CourseMetrics path="/metrics" />
       </Router>
     </div>
   );

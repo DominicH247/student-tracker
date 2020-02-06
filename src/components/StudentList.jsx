@@ -26,7 +26,6 @@ class StudentList extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("HERE");
     for (let key in prevState) {
       if (key !== "students") {
         if (prevState[key] !== this.state[key]) {
@@ -64,7 +63,6 @@ class StudentList extends Component {
     return (
       <main>
         {/* Consider putting into new component */}
-        {console.log(this.state, "THE STATE")}
         <h3>There are currently {this.state.students.length} students</h3>
         <form>
           <label>
@@ -100,9 +98,7 @@ class StudentList extends Component {
             )}
           </label>
         </form>
-
         <CohortForm setCohortSearch={this.setCohortSearch} />
-
         <form>
           <select id="sortBy" onChange={this.handleChange}>
             <option value="name">Name</option>
@@ -113,20 +109,27 @@ class StudentList extends Component {
             <option value="desc">desc</option>
           </select>
         </form>
-
-        <Router>
-          <Student path="/student/:student_id" />
-        </Router>
-
-        {this.state.students.map(student => {
-          return (
-            <Link to={`/students/student/${student._id}`} key={student._id}>
-              <StudentCard {...student} />;
-            </Link>
-          );
-        })}
-
-        {!this.state.students.length && <h1>Filter has no students!</h1>}
+        <section className="showStudents">
+          <section className="allStudents">
+            {this.state.students.map(student => {
+              return (
+                <Link
+                  to={`/students/student/${student._id}`}
+                  key={student._id}
+                  className="link"
+                >
+                  <StudentCard {...student} />
+                </Link>
+              );
+            })}
+            {!this.state.students.length && <h1>Filter has no students!</h1>}
+          </section>
+          <section className="oneStudent">
+            <Router>
+              <Student path="/student/:student_id" />
+            </Router>
+          </section>
+        </section>
       </main>
     );
   }

@@ -1,13 +1,85 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.navBar {
+  margin: 2vw 30vw;
+  text-align: center;
+  font-size: 4vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navButton {
+  margin: 0;
+  text-align: center;
+  font-size: 2vw;
+  background-color: lightgray;
+}
+
+h3 {
+  margin: 0vw;
+  font-size: 2vw;
+}
+
+form,
+input,
+button,
+select {
+  text-align: center;
+  font-size: 1vw;
+  background-color: lightgray;
+}
+
+.showStudents {
+  margin: 3vw 0vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.allStudents {
+}
+
+.studentCard {
+  background-color: lightpink;
+  margin: 2vw 10vw;
+  padding: 2vw;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-size: 2vw;
+}
+
+.oneStudent {
+}
+
+.oneStudentContainer {
+  margin: 2vw 4vw;
+  background-color: lightsalmon;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  font-size: 2em;
+  margin: 2vw;
+  text-decoration: none;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat (5, 1fr);
+  grid-gap: 2vw;
 }

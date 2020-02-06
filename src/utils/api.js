@@ -19,9 +19,32 @@ const getStudents = (
   }
 
   return Axios.get(searchPath).then(({ data }) => {
-    console.log(data, "THE DATA ");
+    // console.log(data, "THE DATA ");
     return data;
   });
 };
 
-module.exports = { getStudents };
+const getStudentById = id => {
+  return Axios.get(
+    `https://nc-student-tracker.herokuapp.com/api/students/${id}`
+  ).then(({ data: { student } }) => {
+    return student;
+  });
+};
+
+const getAllStudentsBlockInfo = () => {
+  let searchPath = `https://nc-student-tracker.herokuapp.com/api/students?graduated=true`;
+  return Axios.get(searchPath)
+    .then(({ data: { students } }) => {
+      return students;
+    })
+    .then(students => {
+      // console.log(students);
+      let studentsData = students.map(student => {
+        return getStudentById(student._id);
+      });
+      return studentsData;
+    });
+};
+
+module.exports = { getStudents, getStudentById, getAllStudentsBlockInfo };
