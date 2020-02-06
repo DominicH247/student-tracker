@@ -1,16 +1,24 @@
 const Axios = require("axios");
 
-const getStudents = (hasGraduated, blockInput) => {
-  let blockQuery = blockInput;
-  if (!blockInput) {
-    blockQuery = "";
+const getStudents = (
+  sortByInput,
+  orderByInput,
+  hasGraduated,
+  blockInput,
+  cohortInput
+) => {
+  // console.log(sortByInput, orderByInput, hasGraduated, blockInput, cohortInput);
+  let searchPath = `https://nc-student-tracker.herokuapp.com/api/students?sort_by=${sortByInput}&order=${orderByInput}&graduated=${hasGraduated}`;
+
+  if (blockInput) {
+    searchPath += `&block=${blockInput}`;
   }
-  console.log(
-    `https://nc-student-tracker.herokuapp.com/api/students?graduated=${hasGraduated}&block=${blockQuery}`
-  );
-  return Axios.get(
-    `https://nc-student-tracker.herokuapp.com/api/students?graduated=${hasGraduated}&block=${blockQuery}`
-  ).then(({ data }) => {
+
+  if (cohortInput) {
+    searchPath += `&cohort=${cohortInput}`;
+  }
+
+  return Axios.get(searchPath).then(({ data }) => {
     console.log(data, "THE DATA ");
     return data;
   });
