@@ -14,6 +14,7 @@ class CohortForm extends Component {
     event.preventDefault();
 
     this.props.setCohortSearch(this.state.cohort);
+    this.setState({ cohort: "" });
   };
 
   render() {

@@ -3,7 +3,7 @@ import React from "react";
 const StudentCard = props => {
   const onClick = event => {
     event.preventDefault();
-    props.deleteStudent(props.student_id);
+    props.deleteStudent(props.student._id);
   };
 
   return (

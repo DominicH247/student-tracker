@@ -40,7 +40,7 @@ class StudentList extends Component {
               this.state.cohortSearch
             )
             .then(({ students }) => {
-              this.setState({ students });
+              this.setState({ students, isLoading: false });
             });
         }
       }
@@ -49,7 +49,7 @@ class StudentList extends Component {
 
   handleChange = ({ target: { value, id } }) => {
     console.log(id);
-    this.setState({ [id]: value });
+    this.setState({ [id]: value, cohortSearch: null });
   };
 
   setCohortSearch = cohortInput => {
@@ -70,7 +70,9 @@ class StudentList extends Component {
   };
 
   deleteStudent = student_id => {
-    console.log("MADE IT");
+    api.removeStudentById(student_id).then(() => {
+      this.setState({ isLoading: true });
+    });
   };
 
   render() {
@@ -81,6 +83,7 @@ class StudentList extends Component {
     return (
       <main>
         {/* Consider putting into new component */}
+        {console.log(this.state, "HERE HERE")}
         <h3>There are currently {this.state.students.length} students</h3>
         <form>
           <label>

@@ -56,9 +56,16 @@ const postNewStudent = student => {
   });
 };
 
+const removeStudentById = student_id => {
+  return Axios.delete(
+    `https://nc-student-tracker.herokuapp.com/api/students/${student_id}`
+  );
+};
+
 module.exports = {
   getStudents,
   getStudentById,
   getAllStudentsBlockInfo,
-  postNewStudent
+  postNewStudent,
+  removeStudentById
 };
