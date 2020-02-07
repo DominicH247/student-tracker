@@ -5,6 +5,7 @@ import StudentCard from "../components/StudentCard";
 import CohortForm from "../components/CohortForm";
 import { Router, Link } from "@reach/router";
 import Student from "../components/Student";
+import StudentAdder from "./StudentAdder";
 
 class StudentList extends Component {
   state = {
@@ -53,6 +54,23 @@ class StudentList extends Component {
 
   setCohortSearch = cohortInput => {
     this.setState({ cohortSearch: cohortInput });
+  };
+
+  insertStudent = student => {
+    api.postNewStudent(student).then(student => {
+      this.setState(
+        currentState => {
+          return { students: [student, ...currentState.students] };
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+    });
+  };
+
+  deleteStudent = student_id => {
+    console.log("MADE IT");
   };
 
   render() {
@@ -118,13 +136,20 @@ class StudentList extends Component {
                   key={student._id}
                   className="link"
                 >
-                  <StudentCard {...student} />
+                  <StudentCard
+                    student={student}
+                    deleteStudent={this.deleteStudent}
+                  />
                 </Link>
               );
             })}
             {!this.state.students.length && <h1>Filter has no students!</h1>}
           </section>
           <section className="oneStudent">
+            <StudentAdder
+              path="/student/add-student"
+              insertStudent={this.insertStudent}
+            />
             <Router>
               <Student path="/student/:student_id" />
             </Router>

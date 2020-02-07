@@ -47,4 +47,18 @@ const getAllStudentsBlockInfo = () => {
     });
 };
 
-module.exports = { getStudents, getStudentById, getAllStudentsBlockInfo };
+const postNewStudent = student => {
+  return Axios.post(
+    `https://nc-student-tracker.herokuapp.com/api/students`,
+    student
+  ).then(({ data }) => {
+    return data.student;
+  });
+};
+
+module.exports = {
+  getStudents,
+  getStudentById,
+  getAllStudentsBlockInfo,
+  postNewStudent
+};

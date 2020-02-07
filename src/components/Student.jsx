@@ -21,7 +21,6 @@ class Student extends Component {
   }
 
   render() {
-    console.log(this.state.student, "HERE");
     return (
       <div className="oneStudentContainer">
         <h2>Student: {this.state.student.name}</h2>
